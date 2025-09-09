@@ -5,13 +5,11 @@
   <div class="modal" *ngIf="showModal" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
 
-      <!-- هدر مودال -->
       <div class="modal-header">
         <h2>مدیریت سمت‌ها</h2>
         <button class="close-btn" (click)="closeModal()">×</button>
       </div>
 
-      <!-- جدول -->
       <div class="table-wrapper">
         <table>
           <thead>
@@ -27,11 +25,11 @@
           <tbody>
             <tr *ngFor="let item of mainGridData; let i = index">
               <td>{{ item.level }}</td>
-              <td>{{ item.title }}</td> <!-- تغییر از titleName به title -->
+              <td>{{ item.title }}</td>
               <td>{{ item.postNumber }}</td>
               <td>{{ item.defaultJobTitle }}</td>
               <td>{{ item.userJobTitle }}</td>
-              <td>
+              <td class="action-buttons">
                 <button class="btn-edit" (click)="editItem(i)">✏️ ویرایش</button>
                 <button class="btn-delete" (click)="deleteItem(i)">🗑️ حذف</button>
               </td>
@@ -40,30 +38,25 @@
         </table>
       </div>
 
-      <!-- فرم افزودن / ویرایش -->
       <div class="form-box" *ngIf="editingIndex !== null || adding">
         <h3>{{ editingIndex !== null ? 'ویرایش سمت' : 'افزودن سمت جدید' }}</h3>
-        <form (ngSubmit)="saveForm()">
-          <input type="number" [(ngModel)]="formModel.level" name="level" placeholder="سطح" required readonly />
-
-          <select [(ngModel)]="formModel.title" name="title" required
-                  (ngModelChange)="onTitleSelected($event)">
-            <option value="" disabled selected>انتخاب عنوان سطح</option>
+        <form [formGroup]="form" (ngSubmit)="saveForm()">
+          <input type="number" formControlName="level" placeholder="سطح" readonly />
+          <select formControlName="title" (change)="onTitleSelected($event)">
+            <option value="" disabled>انتخاب عنوان سطح</option>
             <option *ngFor="let job of jobTitles" [value]="job.title">{{ job.title }}</option>
           </select>
-
-          <input type="number" [(ngModel)]="formModel.postNumber" name="postNumber" placeholder="شماره پست" required />
-          <input type="text" [(ngModel)]="formModel.defaultJobTitle" name="defaultJobTitle" placeholder="سمت پیش‌فرض" />
-          <input type="text" [(ngModel)]="formModel.userJobTitle" name="userJobTitle" placeholder="سمت کاربر" />
+          <input type="number" formControlName="postNumber" placeholder="شماره پست" required />
+          <input type="text" formControlName="defaultJobTitle" placeholder="سمت پیش‌فرض" />
+          <input type="text" formControlName="userJobTitle" placeholder="سمت کاربر" />
 
           <div class="modal-footer">
-            <button type="submit" class="btn-save">✔ ذخیره</button>
+            <button type="submit" class="btn-save" [disabled]="form.invalid">✔ ذخیره</button>
             <button type="button" class="btn-cancel" (click)="cancelForm()">❌ انصراف</button>
           </div>
         </form>
       </div>
 
-      <!-- دکمه افزودن -->
       <div class="modal-footer" *ngIf="editingIndex === null && !adding">
         <button class="btn-add" (click)="addItem()">➕ افزودن</button>
       </div>

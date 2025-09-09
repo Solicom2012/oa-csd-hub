@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'org-level-app' title`, () => {
+  it(`should have the correct TITLE`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('org-level-app');
+    expect(app.TITLE).toEqual('مدیریت سمت‌های سازمانی'); // <-- تغییر داده شد
   });
 
-  it('should render title', () => {
+  it('should render title in h1', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, org-level-app');
+    expect(compiled.querySelector('h1')?.textContent).toContain('مدیریت سمت‌های سازمانی'); // <-- تغییر داده شد
   });
 });
