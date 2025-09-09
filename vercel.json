@@ -5,11 +5,24 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist/oa-csd-hub/browser"
+        "distDir": "dist/oa-csd-hub/browser",
+        "buildCommand": "npm run build:vercel"
       }
     }
   ],
   "routes": [
+    {
+      "src": "/polyfills-(.*).js",
+      "dest": "/polyfills-$1.js"
+    },
+    {
+      "src": "/main-(.*).js",
+      "dest": "/main-$1.js"
+    },
+    {
+      "src": "/styles-(.*).css",
+      "dest": "/styles-$1.css"
+    },
     {
       "src": "/(.*)",
       "dest": "/index.html"
