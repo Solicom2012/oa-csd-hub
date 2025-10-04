@@ -199,3 +199,11 @@ tbody tr:hover {
   th, td { font-size:0.75rem; padding:6px 8px; }
   .form-box input, .form-box select { font-size:0.8rem; padding:5px 8px; min-height:28px; }
 }
+.hero {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /* گرادیانت بنفش به آبی */
+  padding: 60px 20px;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  transition: background 0.3s ease;
+}
