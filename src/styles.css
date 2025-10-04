@@ -1,1 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global theme and RTL setup */
+:root {
+  --brand-primary: #2575fc;
+  --brand-secondary: #6a11cb;
+  --surface: #ffffff;
+  --background: #f7f8fc;
+  --text-primary: #1f2937;
+  --text-muted: #6b7280;
+  --border: #eef2ff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  direction: rtl;
+  background: radial-gradient(1200px 800px at 100% -200px, rgba(37,117,252,0.12), transparent),
+              radial-gradient(1000px 800px at -200px 100%, rgba(106,17,203,0.10), transparent),
+              var(--background);
+  color: var(--text-primary);
+  font-family: 'Vazirmatn', 'Vazir', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+app-root {
+  display: block;
+  min-height: 100dvh;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #0b1220;
+    --background: #0b1220;
+    --text-primary: #e5e7eb;
+    --text-muted: #94a3b8;
+    --border: #1f2937;
+  }
+  body {
+    background: radial-gradient(1200px 800px at 100% -200px, rgba(37,117,252,0.15), transparent),
+                radial-gradient(1000px 800px at -200px 100%, rgba(106,17,203,0.14), transparent),
+                var(--background);
+  }
+}
