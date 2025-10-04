@@ -1,6 +1,27 @@
 <div class="container">
-  <h1>{{ TITLE }}</h1>
-  <button class="btn-main" (click)="openModal()">📋 ,حححمدیریت سمت‌ها</button>
+  <header class="hero">
+    <div class="hero-text">
+      <h1>{{ TITLE }}</h1>
+      <p class="subtitle">سامانه ساده و زیبا برای مدیریت سمت‌ها و پست‌ها</p>
+      <div class="cta">
+        <button class="btn-main" (click)="openModal()">📋 مدیریت سمت‌ها</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value">{{ mainGridData.length }}</div>
+        <div class="stat-label">رکورد ثبت‌شده</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">{{ jobTitles.length }}</div>
+        <div class="stat-label">عنوان سطح</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">✔︎</div>
+        <div class="stat-label">ویرایش و افزودن سریع</div>
+      </div>
+    </div>
+  </header>
 
   <div class="modal" *ngIf="showModal" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
@@ -10,7 +31,7 @@
         <button class="close-btn" (click)="closeModal()">×</button>
       </div>
 
-      <div class="table-wrapper">
+      <div class="table-wrapper" role="region" aria-label="جدول سمت‌ها">
         <table>
           <thead>
             <tr>
@@ -30,8 +51,8 @@
               <td>{{ item.defaultJobTitle }}</td>
               <td>{{ item.userJobTitle }}</td>
               <td class="action-buttons">
-                <button class="btn-edit" (click)="editItem(i)">✏️ ویرایش</button>
-                <button class="btn-delete" (click)="deleteItem(i)">🗑️ حذف</button>
+                <button class="btn-edit" (click)="editItem(i)" aria-label="ویرایش ردیف {{ i + 1 }}">✏️ ویرایش</button>
+                <button class="btn-delete" (click)="deleteItem(i)" aria-label="حذف ردیف {{ i + 1 }}">🗑️ حذف</button>
               </td>
             </tr>
           </tbody>
