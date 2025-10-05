@@ -64,7 +64,7 @@
         <form [formGroup]="form" (ngSubmit)="saveForm()">
           <input type="number" formControlName="level" placeholder="سطح" readonly />
           <select formControlName="title" (change)="onTitleSelected($event)">
-            <option value="" disabled>انتخاب عنوان سطح</option>
+            <option [ngValue]="null" disabled selected>انتخاب عنوان سطح</option>
             <option *ngFor="let job of jobTitles" [value]="job.title">{{ job.title }}</option>
           </select>
           <input type="number" formControlName="postNumber" placeholder="شماره پست" required />

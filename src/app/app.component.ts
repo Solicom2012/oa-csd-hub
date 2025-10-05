@@ -41,9 +41,9 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      level: [{ value: 0, disabled: true }, Validators.required],
-      title: ['', Validators.required],
-      postNumber: [0, Validators.required],
+      level: [{ value: null, disabled: true }],
+      title: [null, Validators.required],
+      postNumber: [null, [Validators.required, Validators.min(1)]],
       defaultJobTitle: [''],
       userJobTitle: ['']
     });
@@ -55,7 +55,7 @@ export class AppComponent {
   addItem() {
     this.adding = true;
     this.editingIndex = null;
-    this.form.reset({ level: 0, title: '', postNumber: 0, defaultJobTitle: '', userJobTitle: '' });
+    this.form.reset({ level: null, title: null, postNumber: null, defaultJobTitle: '', userJobTitle: '' });
   }
 
   editItem(i: number) {
@@ -79,7 +79,9 @@ export class AppComponent {
 
   saveForm() {
     if (this.form.invalid) return;
-    const newPosition: Position = { ...this.form.getRawValue() };
+    const raw = this.form.getRawValue();
+    const derivedLevel = raw.level ?? (this.jobTitles.find(j => j.title === raw.title)?.id ?? 0);
+    const newPosition: Position = { ...raw, level: derivedLevel } as Position;
     if (this.editingIndex !== null) {
       this.mainGridData[this.editingIndex] = newPosition;
     } else {
@@ -98,7 +100,7 @@ export class AppComponent {
   }
 
   private resetForm() {
-    this.form.reset({ level: 0, title: '', postNumber: 0, defaultJobTitle: '', userJobTitle: '' });
+    this.form.reset({ level: null, title: null, postNumber: null, defaultJobTitle: '', userJobTitle: '' });
     this.editingIndex = null;
     this.adding = false;
   }
