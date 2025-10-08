@@ -29,7 +29,7 @@ button:hover {
 }
 
 .btn-main {
-  background: linear-gradient(90deg,#6a11cb,#2575fc);
+  background: linear-gradient(90deg,#ff6b6b,#ee5a6f);
   color: #fff;
 }
 
@@ -94,7 +94,7 @@ button:hover {
 
 .modal-header h2 {
   font-size:1.3rem;
-  color:#2575fc;
+  color:#ff6b6b;
   margin:0;
 }
 
@@ -148,7 +148,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background:#e0f7ff;
+  background:#ffe0e0;
   transform: translateY(-1px);
   box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
@@ -174,8 +174,8 @@ tbody tr:hover {
 }
 
 .form-box input:focus, .form-box select:focus {
-  border-color:#2575fc;
-  box-shadow:0 0 8px rgba(37,117,252,0.3);
+  border-color:#ff6b6b;
+  box-shadow:0 0 8px rgba(255,107,107,0.3);
   outline:none;
 }
 
